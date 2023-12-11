@@ -7,88 +7,134 @@
     <title>Music Memory Game</title>
     <style>
       /* Center the container in the middle of the screen */
-      html, body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        background-color: #ffffff;
-      }
+      html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: #000000;
+    }
 
-      /* Style for the header */
-      header {
-        background-color: #000000;
-        color: #409b25;
-        padding: 10px;
-        text-align: center;
-        font-family: 'Mortal Kombat 4', sans-serif;
-        font-size: 18px;
-      }
+    /* Style for the header */
+    header {
+      background-color: #000000;
+      color: #409b25;
+      padding: 10px;
+      text-align: center;
+      font-family: 'Mortal Kombat 4', sans-serif;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      /* Style for the container box */
-      .container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 20px;
-        height: 600px;
-        width: 600px;
-        margin: 20px auto; /* Center the container horizontally */
-        padding: 20px;
-        background-color: #000000;
-        border-radius: 20px;
-      }
+    /* Style for the container box */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
+      height: 600px;
+      width: 600px;
+      margin: 20px auto;
+      /* Center the container horizontally */
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 20px;
+    }
 
-      /* Style for the inner boxes */
-      /* Style for the inner boxes */
-.box {
-    width: 100%;
-    height: 100%;
-    background-color: #3498db;
-    color: #000000;
-    text-align: center;
-    line-height: 150px; /* Adjust the line-height to vertically center the emoji */
-    cursor: pointer;
-    font-size: 3em; /* Adjust the font size to increase the size of the emoji */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for the background color */
-}
-.box:hover {
-    background-color: #d6317e; /* Change the background color on hover */
-}
+    /* Style for the inner boxes */
+    .box {
+      width: 100%;
+      height: 100%;
+      background-color: #3498db;
+      color: #000000;
+      text-align: center;
+      line-height: 150px;
+      /* Adjust the line-height to vertically center the emoji */
+      cursor: pointer;
+      font-size: 3em;
+      /* Adjust the font size to increase the size of the emoji */
+      transition: background-color 0.3s ease;
+      /* Smooth transition for the background color */
+    }
 
-      .box:hover {
-        background-color: #d6317e; /* Change the background color on hover */
-      }
-      .box-1 {
-        background-color: #eed911;
-        font-weight: bold;
-        border-radius: 45px;
-      }
-      .box-2 {
-        background-color: #f27c1f;
-        font-weight: bold;
-        border-radius: 45px;
-      }
-      .box-3 {
-        background-color: #f53929;
-        font-weight: bold;
-        border-radius: 45px;
-      }
-      .box-4 {
-        background-color: #3c80e7;
-        font-weight: bold;
-        border-radius: 45px;
-      }
+    .box:hover {
+      background-color: #409b25;
+      /* Change the background color on hover */
+    }
+
+    .box:hover {
+      background-color: #d6317e;
+      /* Change the background color on hover */
+    }
+
+    .box-1 {
+      background-color: #eed911;
+      font-weight: bold;
+      border-radius: 45px;
+    }
+
+    .box-2 {
+      background-color: #f27c1f;
+      font-weight: bold;
+      border-radius: 45px;
+    }
+
+    .box-3 {
+      background-color: #f53929;
+      font-weight: bold;
+      border-radius: 45px;
+    }
+
+    .box-4 {
+      background-color: #3c80e7;
+      font-weight: bold;
+      border-radius: 45px;
+    }
+
+    #startButton {
+      background-color: black;
+      /* Mortal Kombat theme color */
+      color: #409b25;
+      ;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      font-size: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Mortal Kombat Mythologies', sans-serif;
+    }
+
+    #startButton:hover {
+      background-color: rgba(255, 68, 0, 0.466);
+      /* Change the background color on hover */
+    }
+
+    #Result {
+      color: #fff;
+    }
+
+    .score-user {
+      text-align: left;
+      margin-left: 20px;
+      /* Adjust the margin as needed */
+    }
     </style>
   </head>
   <body>
     <!-- Header -->
     <header>
       <h1>Music Memory Game🐉</h1>
-      <button id="startButton">Start Game!</button>
-      <h3>Score: <span id="Result">0</span></h3>
-    </header>
+      <button id="startButton" onclick="setUsername()">Start Game!</button>
+      <div>
+          <h3>Score: <span id="Result">0</span></h3>
+          <h3>User: <span id="Username"></span></h3>
+      </div>
+  </header>
 
     <!-- Container box -->
     <div class="container">
@@ -110,6 +156,8 @@
       let level = 1;
       let score = 0;
 
+      
+
       function createUser() {
         console.log("User created!");
       }
@@ -120,7 +168,7 @@
 
         const originalColor = box.style.backgroundColor;
 
-        box.style.backgroundColor = "#e74c3c";
+        box.style.backgroundColor = "#409b25;";
 
         audio.play();
 
