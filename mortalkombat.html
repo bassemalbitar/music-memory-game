@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.cdnfonts.com/css/mortal-kombat" rel="stylesheet">
+    <title>Music Memory Game</title>
+    <style>
+      /* Center the container in the middle of the screen */
+      html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+      }
+
+      /* Style for the header */
+      header {
+        background-color: #000000;
+        color: #409b25;
+        padding: 10px;
+        text-align: center;
+        font-family: 'Mortal Kombat 4', sans-serif;
+        font-size: 18px;
+      }
+
+      /* Style for the container box */
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+        height: 600px;
+        width: 600px;
+        margin: 20px auto; /* Center the container horizontally */
+        padding: 20px;
+        background-color: #000000;
+        border-radius: 20px;
+      }
+
+      /* Style for the inner boxes */
+      /* Style for the inner boxes */
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: #3498db;
+    color: #000000;
+    text-align: center;
+    line-height: 150px; /* Adjust the line-height to vertically center the emoji */
+    cursor: pointer;
+    font-size: 3em; /* Adjust the font size to increase the size of the emoji */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for the background color */
+}
+.box:hover {
+    background-color: #d6317e; /* Change the background color on hover */
+}
+
+      .box:hover {
+        background-color: #d6317e; /* Change the background color on hover */
+      }
+      .box-1 {
+        background-color: #eed911;
+        font-weight: bold;
+        border-radius: 45px;
+      }
+      .box-2 {
+        background-color: #f27c1f;
+        font-weight: bold;
+        border-radius: 45px;
+      }
+      .box-3 {
+        background-color: #f53929;
+        font-weight: bold;
+        border-radius: 45px;
+      }
+      .box-4 {
+        background-color: #3c80e7;
+        font-weight: bold;
+        border-radius: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Music Memory Game🐉</h1>
+      <button id="startButton">Start Game!</button>
+      <h3>Score: <span id="Result">0</span></h3>
+    </header>
+
+    <!-- Container box -->
+    <div class="container">
+        <!-- Inner boxes -->
+        <div class="box box-1">👊</div>
+        <div class="box box-2">💣</div>
+        <div class="box box-3">🔥</div>
+        <div class="box box-4">👹</div>
+    </div>
+    
+
+    <audio id="startAudio" src="Round 1 Fight_ (Mortal Kombat Meme) - Sound Effect for editing(MP3_160K).mp3"></audio>
+    <audio id="audio1" src="Excellent -Mortal Kombat Sound-(MP3_160K).mp3"></audio>
+    <audio id="audio2" src="Fight -Mortal Kombat Sound-(MP3_160K).mp3"></audio>
+    <audio id="audio3" src="Fatality - Mortal Kombat Sound Effect (HD)(MP3_160K).mp3"></audio>
+    <audio id="audio4" src="Finish Him_ Mortal Kombat   Sound Effect(MP3_160K).mp3"></audio>
+
+    <script>
+      let level = 1;
+      let score = 0;
+
+      function createUser() {
+        console.log("User created!");
+      }
+
+      function playSoundFromBox(boxNumber) {
+        const audio = document.getElementById(`audio${boxNumber}`);
+        const box = document.querySelector(`.box-${boxNumber}`);
+
+        const originalColor = box.style.backgroundColor;
+
+        box.style.backgroundColor = "#e74c3c";
+
+        audio.play();
+
+        setTimeout(() => {
+          box.style.backgroundColor = originalColor;
+        }, 1000);
+      }
+
+      function handleBoxClick(clickedBox) {
+        if (clickedBox === level) {
+          score += 1;
+          document.getElementById("Result").innerText = score;
+          level += 1;
+          playSoundFromBox(clickedBox);
+
+          if (level > 4) {
+            level = 1;
+            setTimeout(() => {
+              playSoundFromBox(level);
+            }, 1500);
+          } else {
+            setTimeout(() => {
+              playSoundFromBox(level);
+            }, 1500);
+          }
+        } else {
+          console.log("Wrong selection. You lost!");
+          resetGame();
+        }
+      }
+
+      function resetGame() {
+        level = 1;
+        score = 0;
+        document.getElementById("Result").innerText = score;
+        setTimeout(() => {
+          playSoundFromBox(level);
+        }, 1500);
+      }
+
+      document.getElementById("startButton").addEventListener("click", function () {
+        createUser();
+        const startAudio = document.getElementById("startAudio");
+        startAudio.play();
+        setTimeout(() => {
+          playSoundFromBox(level);
+        }, 1500);
+      });
+
+      document.querySelectorAll(".box").forEach((box) => {
+        box.addEventListener("click", function () {
+          const clickedBox = parseInt(this.classList[1].split("-")[1]);
+          handleBoxClick(clickedBox);
+        });
+      });
+
+      window.onload = createUser;
+    </script>
+  </body>
+</html>
