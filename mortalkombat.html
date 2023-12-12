@@ -156,7 +156,13 @@
       let level = 1;
       let score = 0;
 
-      
+      function setUsername() {
+      const username = prompt("Enter your username:");
+      if (username) {
+        document.getElementById("Username").innerText = username;
+      }
+    }
+
 
       function createUser() {
         console.log("User created!");
